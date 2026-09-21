@@ -13,3 +13,6 @@ target/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Local database configuration
+backend/src/main/resources/application.properties
