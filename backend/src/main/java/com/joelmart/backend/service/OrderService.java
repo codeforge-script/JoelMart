@@ -8,8 +8,8 @@ import com.joelmart.backend.entity.User;
 import com.joelmart.backend.repository.CartItemRepository;
 import com.joelmart.backend.repository.OrderItemRepository;
 import com.joelmart.backend.repository.OrderRepository;
-import com.joelmart.backend.repository.UserRepository;
 import com.joelmart.backend.repository.ProductRepository;
+import com.joelmart.backend.repository.UserRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -129,5 +129,61 @@ public class OrderService {
         }
 
         return order;
+    }
+
+    public List<OrderItem> getSellerOrderItems(Long sellerId) {
+
+        User seller = userRepository.findById(sellerId)
+                .orElseThrow(() -> new RuntimeException("Seller not found"));
+
+        if (seller.getRole() != User.Role.SELLER) {
+            throw new RuntimeException("Only sellers can view seller orders");
+        }
+
+        return orderItemRepository.findByProduct_Seller(seller);
+    }
+
+    public Order updateOrderStatus(Long orderId,
+                                   Long sellerId,
+                                   String status) {
+
+        User seller = userRepository.findById(sellerId)
+                .orElseThrow(() -> new RuntimeException("Seller not found"));
+
+        if (seller.getRole() != User.Role.SELLER) {
+            throw new RuntimeException("Only sellers can update order status");
+        }
+
+        Order order = orderRepository.findById(orderId)
+                .orElseThrow(() -> new RuntimeException("Order not found"));
+
+        List<OrderItem> orderItems = orderItemRepository.findByOrder(order);
+
+        boolean sellerOwnsOrder = orderItems.stream()
+                .anyMatch(item ->
+                        item.getProduct().getSeller().getId().equals(sellerId)
+                );
+
+        if (!sellerOwnsOrder) {
+            throw new RuntimeException(
+                    "You can only update orders containing your products"
+            );
+        }
+
+        String newStatus = status.toUpperCase();
+
+        if (!newStatus.equals("PENDING")
+                && !newStatus.equals("CONFIRMED")
+                && !newStatus.equals("SHIPPED")
+                && !newStatus.equals("DELIVERED")
+                && !newStatus.equals("CANCELLED")) {
+            throw new RuntimeException(
+                    "Invalid order status"
+            );
+        }
+
+        order.setStatus(newStatus);
+
+        return orderRepository.save(order);
     }
 }

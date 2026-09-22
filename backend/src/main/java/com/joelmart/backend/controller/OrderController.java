@@ -1,6 +1,7 @@
 package com.joelmart.backend.controller;
 
 import com.joelmart.backend.entity.Order;
+import com.joelmart.backend.entity.OrderItem;
 import com.joelmart.backend.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -47,5 +48,29 @@ public class OrderController {
         return ResponseEntity.ok(
                 orderService.getOrderById(id, buyerId)
         );
+    }
+
+    @GetMapping("/seller")
+    public ResponseEntity<List<OrderItem>> getSellerOrderItems(
+            @RequestParam Long sellerId) {
+
+        return ResponseEntity.ok(
+                orderService.getSellerOrderItems(sellerId)
+        );
+    }
+
+    @PutMapping("/{id}/status")
+    public ResponseEntity<Order> updateOrderStatus(
+            @PathVariable Long id,
+            @RequestParam Long sellerId,
+            @RequestParam String status) {
+
+        Order updatedOrder = orderService.updateOrderStatus(
+                id,
+                sellerId,
+                status
+        );
+
+        return ResponseEntity.ok(updatedOrder);
     }
 }
