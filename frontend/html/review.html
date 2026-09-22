@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JoelMart - Product Review</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>JoelMart</h1>
+
+        <p>Product Reviews</p>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="orders.html">My Orders</a>
+            <a href="cart.html">My Cart</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section>
+
+            <h2>Write a Review</h2>
+
+            <p id="reviewMessage"></p>
+
+            <form id="reviewForm">
+
+                <label for="productId">
+                    Product ID
+                </label>
+
+                <input
+                    type="number"
+                    id="productId"
+                    value="1"
+                    min="1"
+                    required
+                >
+
+                <br><br>
+
+                <label for="rating">
+                    Rating
+                </label>
+
+                <select id="rating" required>
+
+                    <option value="">
+                        Select Rating
+                    </option>
+
+                    <option value="5">
+                        5 - Excellent
+                    </option>
+
+                    <option value="4">
+                        4 - Very Good
+                    </option>
+
+                    <option value="3">
+                        3 - Good
+                    </option>
+
+                    <option value="2">
+                        2 - Fair
+                    </option>
+
+                    <option value="1">
+                        1 - Poor
+                    </option>
+
+                </select>
+
+                <br><br>
+
+                <label for="comment">
+                    Comment
+                </label>
+
+                <textarea
+                    id="comment"
+                    rows="5"
+                    placeholder="Write your review"
+                ></textarea>
+
+                <br><br>
+
+                <button type="submit">
+                    Submit Review
+                </button>
+
+            </form>
+
+        </section>
+
+        <section>
+
+            <h2>Product Reviews</h2>
+
+            <button
+                type="button"
+                onclick="loadReviews()"
+            >
+                View Reviews
+            </button>
+
+            <div id="reviewsContainer"></div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/review.js"></script>
+
+</body>
+
+</html>

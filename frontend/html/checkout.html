@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JoelMart - Checkout</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>JoelMart</h1>
+
+        <p>Checkout</p>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">Back to Cart</a>
+            <a href="products.html">Products</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section>
+
+            <h2>Checkout</h2>
+
+            <p id="checkoutMessage"></p>
+
+            <h3>Shipping Address</h3>
+
+            <form id="checkoutForm">
+
+                <label for="shippingAddress">
+                    Complete Shipping Address
+                </label>
+
+                <textarea
+                    id="shippingAddress"
+                    rows="6"
+                    placeholder="Enter your complete shipping address"
+                    required
+                ></textarea>
+
+                <br><br>
+
+                <button type="submit">
+                    Place Order
+                </button>
+
+            </form>
+
+            <div id="orderResult"></div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/checkout.js"></script>
+
+</body>
+
+</html>

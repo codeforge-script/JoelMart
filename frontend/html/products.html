@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JoelMart - Products</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>JoelMart</h1>
+
+        <p>Multi-Vendor E-Commerce Marketplace</p>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="cart.html">My Cart</a>
+            <a href="orders.html">My Orders</a>
+            <a href="review.html">Reviews</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section>
+
+            <h2>Find Products</h2>
+
+            <form id="searchForm">
+
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search for products..."
+                >
+
+                <button type="submit">
+                    Search
+                </button>
+
+                <button
+                    type="button"
+                    onclick="loadProducts()"
+                >
+                    Show All
+                </button>
+
+            </form>
+
+            <br>
+
+            <label for="categorySelect">
+                Filter by Category
+            </label>
+
+            <br><br>
+
+            <select id="categorySelect">
+
+                <option value="">
+                    All Categories
+                </option>
+
+                <option value="Laptops">
+                    Laptops
+                </option>
+
+                <option value="Accessories">
+                    Accessories
+                </option>
+
+                <option value="Mobiles">
+                    Mobiles
+                </option>
+
+                <option value="Electronics">
+                    Electronics
+                </option>
+
+            </select>
+
+        </section>
+
+        <p id="productMessage"></p>
+
+        <div id="productContainer"></div>
+
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/products.js"></script>
+
+</body>
+
+</html>

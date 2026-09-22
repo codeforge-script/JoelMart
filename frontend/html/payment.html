@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>JoelMart - Payment</title>
+
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+    <header>
+
+        <h1>JoelMart</h1>
+
+        <p>Secure Payment</p>
+
+        <nav>
+            <a href="dashboard.html">Dashboard</a>
+            <a href="products.html">Products</a>
+            <a href="orders.html">My Orders</a>
+        </nav>
+
+    </header>
+
+    <main>
+
+        <section>
+
+            <h2>Complete Payment</h2>
+
+            <p id="paymentMessage"></p>
+
+            <div id="orderDetails"></div>
+
+            <form id="paymentForm">
+
+                <label for="paymentMethod">
+                    Choose Payment Method
+                </label>
+
+                <select id="paymentMethod" required>
+
+                    <option value="">
+                        Select Payment Method
+                    </option>
+
+                    <option value="UPI">
+                        UPI
+                    </option>
+
+                    <option value="CARD">
+                        Card
+                    </option>
+
+                    <option value="COD">
+                        Cash on Delivery
+                    </option>
+
+                </select>
+
+                <br><br>
+
+                <button type="submit">
+                    Make Payment
+                </button>
+
+            </form>
+
+            <div id="paymentResult"></div>
+
+        </section>
+
+    </main>
+
+    <script src="../js/api.js"></script>
+    <script src="../js/payment.js"></script>
+
+</body>
+
+</html>
