@@ -8,7 +8,7 @@
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0">
 
-    <title>JoelMart - Login</title>
+    <title>JoelMart - Register</title>
 
     <link rel="stylesheet"
           href="../css/auth.css">
@@ -38,7 +38,7 @@
             </h1>
 
             <p>
-                Your Marketplace, Your Choice
+                Join Our Marketplace
             </p>
 
             <span>
@@ -52,26 +52,42 @@
             <div class="auth-card-header">
 
                 <h2>
-                    Welcome Back
+                    Create Account
                 </h2>
 
                 <p>
-                    Login to continue to JoelMart
+                    Register to start using JoelMart
                 </p>
 
             </div>
 
-            <form id="loginForm">
+            <form id="registerForm">
 
                 <div class="form-group">
 
-                    <label for="loginEmail">
+                    <label for="registerName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="registerName"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required
+                    >
+
+                </div>
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
                         Email Address
                     </label>
 
                     <input
                         type="email"
-                        id="loginEmail"
+                        id="registerEmail"
                         placeholder="Enter your email"
                         autocomplete="email"
                         required
@@ -81,15 +97,15 @@
 
                 <div class="form-group">
 
-                    <label for="loginPassword">
+                    <label for="registerPassword">
                         Password
                     </label>
 
                     <input
                         type="password"
-                        id="loginPassword"
-                        placeholder="Enter your password"
-                        autocomplete="current-password"
+                        id="registerPassword"
+                        placeholder="Create a password"
+                        autocomplete="new-password"
                         required
                     >
 
@@ -98,24 +114,24 @@
                 <button
                     type="submit"
                     class="auth-button">
-                    Login
+                    Create Account
                 </button>
 
                 <p
-                    id="loginMessage"
+                    id="registerMessage"
                     class="auth-message">
                 </p>
 
             </form>
 
             <div class="auth-divider">
-                <span>New to JoelMart?</span>
+                <span>Already have an account?</span>
             </div>
 
             <a
-                href="register.html"
+                href="index.html"
                 class="register-link">
-                Create a New Account
+                Back to Login
             </a>
 
             <p class="auth-footer">

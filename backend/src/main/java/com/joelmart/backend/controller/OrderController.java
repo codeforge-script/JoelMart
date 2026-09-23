@@ -2,6 +2,9 @@ package com.joelmart.backend.controller;
 
 import com.joelmart.backend.entity.Order;
 import com.joelmart.backend.entity.OrderItem;
+import com.joelmart.backend.entity.User;
+import com.joelmart.backend.repository.OrderRepository;
+import com.joelmart.backend.repository.UserRepository;
 import com.joelmart.backend.service.OrderService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,9 +16,17 @@ import java.util.List;
 public class OrderController {
 
     private final OrderService orderService;
+    private final UserRepository userRepository;
+    private final OrderRepository orderRepository;
 
-    public OrderController(OrderService orderService) {
+    public OrderController(
+            OrderService orderService,
+            UserRepository userRepository,
+            OrderRepository orderRepository) {
+
         this.orderService = orderService;
+        this.userRepository = userRepository;
+        this.orderRepository = orderRepository;
     }
 
     @PostMapping
@@ -72,5 +83,32 @@ public class OrderController {
         );
 
         return ResponseEntity.ok(updatedOrder);
+    }
+
+    @PutMapping("/admin/{id}/status")
+    public ResponseEntity<?> updateOrderStatusByAdmin(
+            @PathVariable Long id,
+            @RequestParam Long adminId,
+            @RequestParam String status) {
+
+        User admin = userRepository.findById(adminId)
+                .orElseThrow(() ->
+                        new RuntimeException("Admin not found"));
+
+        if (admin.getRole() != User.Role.ADMIN) {
+
+            return ResponseEntity.status(403)
+                    .body("Only admins can update order status");
+        }
+
+        Order order = orderRepository.findById(id)
+                .orElseThrow(() ->
+                        new RuntimeException("Order not found"));
+
+        order.setStatus(status);
+
+        Order savedOrder = orderRepository.save(order);
+
+        return ResponseEntity.ok(savedOrder);
     }
 }

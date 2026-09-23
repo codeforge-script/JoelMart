@@ -1,74 +1,139 @@
-const loginForm = document.getElementById("loginForm");
-const registerForm = document.getElementById("registerForm");
+const loginForm =
+    document.getElementById("loginForm");
+
+const registerForm =
+    document.getElementById("registerForm");
 
 if (loginForm) {
-    loginForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
 
-        const email = document.getElementById("loginEmail").value.trim();
-        const password = document.getElementById("loginPassword").value;
-        const loginMessage = document.getElementById("loginMessage");
+    loginForm.addEventListener(
+        "submit",
+        async function(event) {
 
-        loginMessage.textContent = "Logging in...";
+            event.preventDefault();
 
-        try {
-            const data = await loginUser(email, password);
+            const email =
+                document.getElementById(
+                    "loginEmail"
+                ).value.trim();
 
-            localStorage.setItem("joelmartUser", JSON.stringify(data));
+            const password =
+                document.getElementById(
+                    "loginPassword"
+                ).value;
 
-            loginMessage.textContent = "Login successful!";
+            const loginMessage =
+                document.getElementById(
+                    "loginMessage"
+                );
 
-            setTimeout(() => {
+            loginMessage.textContent =
+                "Logging in...";
 
-                if (data.role === "SELLER") {
-                    window.location.href = "seller.html";
-                } else if (data.role === "BUYER") {
-                    window.location.href = "dashboard.html";
-                } else {
-                    window.location.href = "dashboard.html";
-                }
+            try {
 
-            }, 500);
+                const data =
+                    await loginUser(
+                        email,
+                        password
+                    );
 
-        } catch (error) {
-            loginMessage.textContent = error.message;
+                localStorage.setItem(
+                    "joelmartUser",
+                    JSON.stringify(data)
+                );
+
+                loginMessage.textContent =
+                    "Login successful!";
+
+                setTimeout(
+                    function() {
+
+                        if (
+                            data.role ===
+                            "ADMIN"
+                        ) {
+
+                            window.location.href =
+                                "admin.html";
+
+                        } else if (
+                            data.role ===
+                            "SELLER"
+                        ) {
+
+                            window.location.href =
+                                "seller.html";
+
+                        } else {
+
+                            window.location.href =
+                                "dashboard.html";
+                        }
+
+                    },
+                    500
+                );
+
+            } catch (error) {
+
+                loginMessage.textContent =
+                    error.message;
+            }
         }
-    });
+    );
 }
 
 if (registerForm) {
-    registerForm.addEventListener("submit", async function (event) {
-        event.preventDefault();
 
-        const fullName =
-            document.getElementById("registerName").value.trim();
+    registerForm.addEventListener(
+        "submit",
+        async function(event) {
 
-        const email =
-            document.getElementById("registerEmail").value.trim();
+            event.preventDefault();
 
-        const password =
-            document.getElementById("registerPassword").value;
+            const fullName =
+                document.getElementById(
+                    "registerName"
+                ).value.trim();
 
-        const registerMessage =
-            document.getElementById("registerMessage");
+            const email =
+                document.getElementById(
+                    "registerEmail"
+                ).value.trim();
 
-        registerMessage.textContent = "Creating account...";
+            const password =
+                document.getElementById(
+                    "registerPassword"
+                ).value;
 
-        try {
+            const registerMessage =
+                document.getElementById(
+                    "registerMessage"
+                );
 
-            const data = await registerUser(
-                fullName,
-                email,
-                password
-            );
+            registerMessage.textContent =
+                "Creating account...";
 
-            registerMessage.textContent = data;
+            try {
 
-            registerForm.reset();
+                const data =
+                    await registerUser(
+                        fullName,
+                        email,
+                        password
+                    );
 
-        } catch (error) {
+                registerMessage.textContent =
+                    data;
 
-            registerMessage.textContent = error.message;
+                registerForm.reset();
+
+            } catch (error) {
+
+                registerMessage.textContent =
+                    error.message;
+            }
         }
-    });
+    );
 }
