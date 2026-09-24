@@ -113,7 +113,8 @@
 
                 <button
                     type="submit"
-                    class="auth-button">
+                    class="auth-button"
+                    id="registerButton">
                     Create Account
                 </button>
 
@@ -124,8 +125,69 @@
 
             </form>
 
+            <div
+                id="otpSection"
+                style="display: none;">
+
+                <div class="auth-divider">
+                    <span>
+                        Verify Your Email
+                    </span>
+                </div>
+
+                <p
+                    style="
+                        text-align:center;
+                        margin-bottom:18px;
+                        color:#475569;
+                        font-size:14px;
+                    ">
+                    Enter the 6-digit OTP sent to your email address.
+                </p>
+
+                <form id="otpForm">
+
+                    <div class="form-group">
+
+                        <label for="otpInput">
+                            Verification OTP
+                        </label>
+
+                        <input
+                            type="text"
+                            id="otpInput"
+                            placeholder="Enter 6-digit OTP"
+                            inputmode="numeric"
+                            maxlength="6"
+                            pattern="[0-9]{6}"
+                            autocomplete="one-time-code"
+                            required
+                        >
+
+                    </div>
+
+                    <button
+                        type="submit"
+                        class="auth-button"
+                        id="verifyOtpButton">
+                        Verify OTP
+                    </button>
+
+                    <p
+                        id="otpMessage"
+                        class="auth-message">
+                    </p>
+
+                </form>
+
+            </div>
+
             <div class="auth-divider">
-                <span>Already have an account?</span>
+
+                <span>
+                    Already have an account?
+                </span>
+
             </div>
 
             <a
